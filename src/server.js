@@ -1,21 +1,20 @@
 const { log } = require("console");
 const express = require("express");
-const path = require("path");
+
+const configViewEngine = require("./config/viewEngine");
+const webRouter = require("./routes/web");
+
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT ?? 8080;
 const hostName = process.env.HOST_NAME;
 
-console.log(process.env);
-console.log(hostName);
 // config template engine ejs
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-// khai báo route
+configViewEngine(app);
 
-app.get("/", (req, res) => {
-    res.render("example.ejs");
-});
+// khai báo route
+app.use("/", webRouter);
+
 app.listen(port, hostName, () => {
     console.log(`Example app listening on port ${port}`);
 });
