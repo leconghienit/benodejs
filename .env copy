@@ -1,2 +1,5 @@
-PORT = 8088
-HOST_NAME = localhost
+PORT = 
+HOST_NAME = 
+
+DB_NAME
+DB_PASSWORD
